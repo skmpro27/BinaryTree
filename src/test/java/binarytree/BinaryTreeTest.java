@@ -46,8 +46,12 @@ public class BinaryTreeTest {
         binaryTree.add(16);
         binaryTree.add(3);
 
-        int value = binaryTree.search(63);
-
-        Assert.assertEquals(63, value);
+        BinaryNode result = binaryTree.search(63);
+        int value;
+        if (result == null)
+            value = 0;
+        else
+            value = (int) result.key;
+        Assert.assertEquals( 63, value);
     }
 }

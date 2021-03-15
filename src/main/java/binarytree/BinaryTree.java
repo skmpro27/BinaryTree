@@ -79,22 +79,28 @@ public class BinaryTree<K extends Comparable<K>> {
         }
     }
 
-    public K search(K key) {
-        return searchRecursively(this.root, key).key;
-    }
-
     BinaryNode<K> tempNode = null;
 
+    public BinaryNode<K> search(K key) {
+        searchRecursively(this.root, key);
+        if (tempNode == null) {
+            System.out.println("No such node found");
+            return null;
+        } else
+            return tempNode;
+    }
+
     private BinaryNode<K> searchRecursively(BinaryNode<K> current, K key) {
+        if (current != null) {
             int compareResult = key.compareTo(current.key);
             if (compareResult == 0) {
                 tempNode = current;
                 return tempNode;
-            }
-            else if (compareResult < 0)
+            } else if (compareResult < 0)
                 current.left = searchRecursively(current.left, key);
             else
                 current.right = searchRecursively(current.right, key);
-            return tempNode;
+        }
+        return tempNode;
     }
 }
